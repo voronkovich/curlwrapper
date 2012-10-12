@@ -1,0 +1,5 @@
+vendor
+
+# Vim
+*.sw[op]
+~*

@@ -1,0 +1,20 @@
+{
+    "name": "voronkovich/curlwrapper",
+    "type": "library",
+    "description": "Object oriented wrapper for curl",
+    "keywords": ["curl"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Oleg Voronkovich",
+            "email": "oleg-voronkovich@yandex.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "ext-curl": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.x-dev"
+    }
+}
