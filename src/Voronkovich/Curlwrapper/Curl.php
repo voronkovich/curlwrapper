@@ -1,5 +1,5 @@
 <?php
-namespace voronkovich\curlwrapper;
+namespace Voronkovich\Curlwrapper;
 
 /**
  * Object oriented wrapper for curl. 
