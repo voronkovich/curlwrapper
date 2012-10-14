@@ -2,6 +2,7 @@
 namespace Voronkovich\Curlwrapper\Tests;
 
 use Voronkovich\Curlwrapper\Curl;
+use Voronkovich\Curlwrapper\Exceptions;
 
 class CurlTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,11 +43,21 @@ class CurlTest extends \PHPUnit_Framework_TestCase
 
     /**
     * @test
-    * @expectedException Voronkovich\Curlwrapper\Exceptions\CurlException
+    * @expectedException Voronkovich\Curlwrapper\Exceptions\UnsupportedProtocolException
     */
     public function execute_invalidProtocol_shouldThrowException()
     {
         $this->curl->setOption(CURLOPT_URL, "xxx://localhost");
+        $this->curl->execute();
+    }
+
+    /**
+    * @test
+    * @expectedException Voronkovich\Curlwrapper\Exceptions\CouldntResolveHostException
+    */
+    public function execute_invalidHost_shouldThrowException()
+    {
+        $this->curl->setOption(CURLOPT_URL, "http://unknownhost");
         $this->curl->execute();
     }
 }

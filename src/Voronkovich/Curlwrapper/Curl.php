@@ -29,9 +29,26 @@ class Curl
         if ($result = curl_exec($this->curl))
             return $result;
 
-        $errorCode = curl_errno($this->curl);
-        $errorMessage = curl_error($this->curl);
+        $this->handleError();
+    }
 
-        throw new Exceptions\CurlException($errorMessage, $errorCode);
+    protected function handleError()
+    {
+        $errorCode = curl_errno($this->curl);
+
+        if ($errorCode !== CURLE_OK) {
+            $errorMessage = curl_error($this->curl);
+
+            switch ($errorCode) {
+                case CURLE_UNSUPPORTED_PROTOCOL:
+                    throw new Exceptions\UnsupportedProtocolException($errorMessage, $errorCode);
+                    break;
+                case CURLE_COULDNT_RESOLVE_HOST:
+                    throw new Exceptions\CouldntResolveHostException($errorMessage, $errorCode);
+                    break;
+                default:
+                    throw new Exceptions\CurlException($errorMessage, $errorCode);
+            }
+        }
     }
 }
