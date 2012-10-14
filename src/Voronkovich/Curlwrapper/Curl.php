@@ -12,4 +12,15 @@ namespace Voronkovich\Curlwrapper;
  */
 class Curl
 {
+    private $curl;
+
+    public function __construct($url = null)
+    {
+        $this->curl = curl_init($url);
+    }
+
+    public function setOption($option, $value)
+    {
+        return curl_setopt($this->curl, $option, $value);
+    }
 }
