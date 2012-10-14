@@ -5,6 +5,13 @@ use Voronkovich\Curlwrapper\Curl;
 
 class CurlTest extends \PHPUnit_Framework_TestCase
 {
+    private $curl;
+
+    protected function setUp()
+    {
+        $this->curl = new Curl();
+    }
+
     /**
     * @test
     */
@@ -17,10 +24,29 @@ class CurlTest extends \PHPUnit_Framework_TestCase
     /**
     * @test
     */
-    public function setValidCurlOption_shouldReturnTrue()
+    public function setOption_setValidCurlOption_shouldReturnTrue()
     {
-        $curl = new Curl();
-        $result = $curl->setOption(CURLOPT_AUTOREFERER, true);
+        $result = $this->curl->setOption(CURLOPT_AUTOREFERER, true);
         $this->assertTrue($result);
+    }
+
+    /**
+    * @test
+    */
+    public function execute_validData_shouldReturnTrue()
+    {
+        $this->curl->setOption(CURLOPT_URL, "http://localhost");
+        $result = $this->curl->execute();
+        $this->assertTrue($result);
+    }
+
+    /**
+    * @test
+    * @expectedException Voronkovich\Curlwrapper\Exceptions\CurlException
+    */
+    public function execute_invalidProtocol_shouldThrowException()
+    {
+        $this->curl->setOption(CURLOPT_URL, "xxx://localhost");
+        $this->curl->execute();
     }
 }

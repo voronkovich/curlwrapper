@@ -23,4 +23,15 @@ class Curl
     {
         return curl_setopt($this->curl, $option, $value);
     }
+
+    public function execute()
+    {
+        if ($result = curl_exec($this->curl))
+            return $result;
+
+        $errorCode = curl_errno($this->curl);
+        $errorMessage = curl_error($this->curl);
+
+        throw new Exceptions\CurlException($errorMessage, $errorCode);
+    }
 }
