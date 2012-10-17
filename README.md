@@ -1,9 +1,7 @@
 curlwrapper
 ===========
 
-Object oriented wrapper for curl
-
-May be installed by Composer.
+Object oriented wrapper for curl. Require PHP 5.3+. May be installed by Composer.
 
 Usage:
     
