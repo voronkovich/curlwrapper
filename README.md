@@ -18,6 +18,9 @@ try {
 } catch (CurlExceptions\CouldntResolveHostException $e) {
     // Host not found
     echo $e->getMessage();
+} catch (CurlExceptions\CouldntConnectException $e) {
+    // Connection failed
+    echo $e->getMessage();
 } catch (CurlExceptions\CurlException $e) {
     // Base exception
     echo $e->getMessage();
