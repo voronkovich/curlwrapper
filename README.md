@@ -7,6 +7,7 @@ Usage:
     
 ```php
 <?php
+
 use Voronkovich\Curlwrapper\Curl;
 use Voronkovich\Curlwrapper\Exceptions as CurlExceptions;
 
